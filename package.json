@@ -2,5 +2,11 @@
   "name": "midiman",
   "version": "1.0.0",
   "author": "Michalis Zamparas <mikezaby@skroutz.gr>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^3.8.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.9.3"
+  }
 }
