@@ -41,7 +41,8 @@ module.exports = {
       filename: production ? '[name]-[chunkhash].css' : '[name].css'
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html'
+      filename: 'index.html',
+      template: 'app/index.html'
     })
   ],
 
