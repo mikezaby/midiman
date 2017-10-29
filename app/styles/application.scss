@@ -1,3 +1,106 @@
-body {
-  background: #ffffff;
+* {
+  box-sizing: border-box;
+}
+
+// Variables
+
+$tone-width: 30px;
+$tone-height: $tone-width * 5;
+
+$semi-tone-width: $tone-width * .8;
+$semi-tone-height: $semi-tone-width * 4;
+
+.piano {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  font: 0/0 a;
+  padding: 100px 20px 20px;
+  border-radius: 20px;
+  background: #393C50;
+
+  .bliblikia {
+    background: #1d1e35;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: $tone-height + 35px;
+    border-radius: 10px 10px 0 0;
+
+    .bliki {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      background: #4B5389; //#E5AF00;
+      box-shadow: inset 0 0 0 1px #999;
+      border: 2px solid #4B5389;
+      display: inline-block;
+      margin: 17px;
+    }
+
+    .bliki-row {
+      float: right;
+      margin: 40px 17px 17px;
+      border-radius: 20px;
+      height: 5px;
+      background: #4B5389;
+      width: 40%;
+    }
+
+    .bliki-row-lines {
+      height: 50px;
+      width: 5px;
+      border-radius: 20px;
+      background: #E6AF00;
+      display: inline-block;
+      margin: -23px 20px;
+
+      &.bliki-row-1 {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .octave {
+    display: inline-block;
+  }
+
+  .whole-tone {
+    position: relative;
+    background: #fff;
+    border: 1px solid #000;
+    width: $tone-width;
+    height: $tone-height;
+    border-radius: 0 0 5px 5px;
+    display: inline-block;
+    margin-right: 1px;
+
+    &:hover {
+      box-shadow: inset 0 0 20px rgba(#000, .4);
+      transform: scaleY(.99);
+      -webkit-transform-origin-y: 0;
+      z-index: 1;
+    }
+  }
+
+  .semi-tone {
+    position: absolute;
+    background: #000;
+    top: -2px;
+    z-index: 2;
+    transform: translatex(75%);
+    width: $semi-tone-width;
+    height: $semi-tone-height;
+    border-radius: 0 0 5px 5px;
+    display: inline-block;
+
+    &:hover {
+      transform: translatex(75%) scaleY(.99);
+      -webkit-transform-origin-y: 0;
+      z-index: 1;
+    }
+  }
 }
