@@ -12,7 +12,7 @@ export default class MidiDevise {
   static async inputs() {
     const inputs = [];
 
-    const access = await navigator.requestMIDIAccess()
+    const access = await navigator.requestMIDIAccess();
     access.inputs.forEach((input) => inputs.push(input));
 
     return inputs;
