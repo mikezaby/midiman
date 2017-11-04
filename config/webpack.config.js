@@ -16,6 +16,7 @@ module.exports = {
   resolve: {
     modules: [
       path.join(__dirname, '..', 'app'),
+      path.join(__dirname, '..', 'app/javascripts'),
       'node_modules',
     ],
     extensions: ['.js', '.scss', '.css'],
