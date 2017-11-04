@@ -85,6 +85,7 @@ $semi-tone-height: $semi-tone-width * 4;
       height: 50px;
       background: #4B5389;
       box-shadow: inset 0 0 0 11px #1d1f36;
+      animation: base 2s cubic-bezier(0.49, 1.46, 0.82, -0.21) infinite;
       border: 4px solid #4B5389;
       display: inline-block;
       margin: 17px 20px;
@@ -92,6 +93,15 @@ $semi-tone-height: $semi-tone-width * 4;
       + .round-control {
         margin-left: 0;
       }
+    }
+
+    .round-control-2 { animation-delay: .2s; }
+    .round-control-3 { animation-delay: .4s; }
+
+    @keyframes base {
+      0% { box-shadow: inset 0 0 0 11px #1d1f36; }
+      50% { box-shadow: inset 0 0 0 2px #1d1f36; }
+      100% { box-shadow: inset 0 0 0 20px #1d1f36; }
     }
 
     .drop-control {
@@ -142,6 +152,7 @@ $semi-tone-height: $semi-tone-width * 4;
     display: inline-block;
 
     &.active {
+      box-shadow: inset 0 0 20px rgba(#fff, .6);
       transform: translatex(75%) scaleY(.99);
       -webkit-transform-origin-y: 0;
       z-index: 1;
