@@ -31,7 +31,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env'],
-            plugins: ['syntax-async-functions']
+            plugins: ['syntax-async-functions', 'transform-async-to-generator']
           }
         }
       },
