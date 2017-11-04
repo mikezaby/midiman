@@ -69,7 +69,7 @@ $semi-tone-height: $semi-tone-width * 4;
     }
   }
 
-  .bliblikia {
+  .controls {
     background: #1d1e35;
     position: absolute;
     top: 0;
@@ -78,15 +78,33 @@ $semi-tone-height: $semi-tone-width * 4;
     bottom: $tone-height + 35px;
     border-radius: 10px 10px 0 0;
 
-    .bliki {
+    .round-control {
+      vertical-align: top;
       border-radius: 50%;
       width: 50px;
       height: 50px;
-      background: #4B5389; //#E5AF00;
-      box-shadow: inset 0 0 0 1px #999;
-      border: 2px solid #4B5389;
+      background: #4B5389;
+      box-shadow: inset 0 0 0 11px #1d1f36;
+      border: 4px solid #4B5389;
       display: inline-block;
-      margin: 17px;
+      margin: 17px 20px;
+
+      + .round-control {
+        margin-left: 0;
+      }
+    }
+
+    .drop-control {
+      vertical-align: top;
+      display: inline-block;
+      -webkit-appearance: none;
+      background: none;
+      border: 1px solid #999;
+      padding: 5px 10px;
+      outline: none;
+      border-radius: 0;
+      color: #999;
+      margin: 30px 0 30px 10px;
     }
   }
 
@@ -115,7 +133,7 @@ $semi-tone-height: $semi-tone-width * 4;
   .semi-tone {
     position: absolute;
     background: #000;
-    top: -2px;
+    top: -1px;
     z-index: 2;
     transform: translatex(75%);
     width: $semi-tone-width;
