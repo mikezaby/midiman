@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'lazer';
+  src: url('../fonts/lazer.woff2') format('woff2'),
+       url('../fonts/lazer.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -16,10 +24,50 @@ $semi-tone-height: $semi-tone-width * 4;
   left: 50%;
   transform: translate(-50%, -50%);
   width: max-content;
-  font: 0/0 a;
+  font: 0/0 lazer;
   padding: 100px 20px 20px;
   border-radius: 20px;
   background: #393C50;
+
+  .midiman-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    line-height: 30px;
+    color: #336dfa;
+    margin: 32px 27px 23px;
+
+    &:before {
+      content: 'midiman';
+      font-size: 30px;
+      line-height: 30px;
+      margin: -2px;
+      color: #fd2e5c;
+      position: absolute;
+    }
+  }
+
+  .midiman-logo-bg {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    top: 30%;
+    right: 0;
+    clip: rect(auto, 180px, auto, 132px);
+    transform: rotate(-110deg);
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1d1f36), color-stop(100%, #2f3562));
+      transform: rotate(-45deg);
+    }
+  }
 
   .bliblikia {
     background: #1d1e35;
