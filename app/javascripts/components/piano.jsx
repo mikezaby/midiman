@@ -10,7 +10,7 @@ export default class Piano extends React.Component {
     super();
 
     this.synth = new Synth();
-    this.state = { notes: {} };
+    this.state = { notes: {}, octaves: 8 };
   }
 
   async setMidi(id) {
@@ -34,11 +34,20 @@ export default class Piano extends React.Component {
     this.setState({ notes: this.state.notes });
   }
 
+  setOctaves(num) {
+    this.setState({ octaves: num });
+  }
+
   render() {
     return (
       <div className="piano">
-        <Controls setMidi={(id) => this.setMidi(id)} />
-        <OctavesContainer notes={this.state.notes} />
+        <Controls
+          setMidi={(id) => this.setMidi(id)}
+          setOctaves={(num) => this.setOctaves(num)}
+          octaves={this.state.octaves}
+        />
+        <OctavesContainer notes={this.state.notes} octaves={this.state.octaves}
+        />
       </div>
     );
   }

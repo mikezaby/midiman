@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Controller from 'components/controller';
+import OctavesControl from 'components/octaves_control';
 
 export default class Controls extends React.Component {
   render() {
@@ -11,12 +12,7 @@ export default class Controls extends React.Component {
         <div className="round-control round-control-3"></div>
 
         <Controller setMidi={this.props.setMidi}/>
-
-        <select className="drop-control" name="midiman-keys" id="midiman-keys">
-          <option value="1">keys: 32 ▾</option>
-          <option value="2">keys: 48 ▾</option>
-          <option value="3">keys: 10^4 ▾</option>
-        </select>
+        <OctavesControl octaves={this.props.octaves} setOctaves={this.props.setOctaves}/>
 
         <div className="midiman-logo-bg"></div>
         <div className="midiman-logo">midiman</div>

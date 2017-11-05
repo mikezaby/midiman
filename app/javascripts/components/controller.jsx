@@ -21,13 +21,13 @@ export default class Controller extends React.Component {
   }
 
   devices() {
-    const devices = [['', 'Select'], ...this.state.devices.map((d) => [d.id, d.name])];
+    const devices = [['', 'Select midi'], ...this.state.devices.map((d) => [d.id, d.name])];
     return devices.map(([id, name]) => <option key={id} value={id}>{name}</option>);
   }
 
   render() {
     return (
-      <select className="drop-control" onChange={(e) => (this.onChange(e))}>
+      <select className="drop-control" onChange={(e) => this.onChange(e)}>
         {this.devices()}
       </select>
     );
