@@ -18,6 +18,9 @@ $tone-height: $tone-width * 5;
 $semi-tone-width: $tone-width * .8;
 $semi-tone-height: $semi-tone-width * 4;
 
+$tone-width-column: $tone-width * 2/3;
+$semitone-width-column: $tone-width * 1/3;
+
 .piano {
   position: absolute;
   top: 50%;
@@ -119,7 +122,15 @@ $semi-tone-height: $semi-tone-width * 4;
   }
 
   .octave {
-    display: inline-block;
+    display: inline-grid;
+    grid-template-columns: $tone-width-column $semitone-width-column
+                           $semitone-width-column $semitone-width-column $semitone-width-column
+                           $semitone-width-column $tone-width-column
+                           $tone-width-column $semitone-width-column
+                           $semitone-width-column $semitone-width-column $semitone-width-column
+                           $semitone-width-column $semitone-width-column $semitone-width-column
+                           $semitone-width-column $tone-width-column;
+    grid-template-rows: $semi-tone-height;
   }
 
   .whole-tone {
@@ -129,33 +140,41 @@ $semi-tone-height: $semi-tone-width * 4;
     width: $tone-width;
     height: $tone-height;
     border-radius: 0 0 5px 5px;
-    display: inline-block;
     margin-right: 1px;
 
     &.active {
       box-shadow: inset 0 0 20px rgba(#000, .4);
       transform: scaleY(.99);
       -webkit-transform-origin-y: 0;
-      z-index: 1;
     }
   }
 
   .semi-tone {
-    position: absolute;
     background: #000;
-    top: -1px;
     z-index: 2;
-    transform: translatex(75%);
     width: $semi-tone-width;
     height: $semi-tone-height;
     border-radius: 0 0 5px 5px;
-    display: inline-block;
 
     &.active {
       box-shadow: inset 0 0 20px rgba(#fff, .6);
       transform: translatex(75%) scaleY(.99);
       -webkit-transform-origin-y: 0;
-      z-index: 1;
     }
   }
+
+  // Tones grid areas
+
+  .c { grid-column: 1 / span 2; grid-row: 1 / span 2; }
+  .c-sharp { grid-column: 2 / span 2; grid-row: 1; }
+  .d { grid-column: 3 / span 2; grid-row: 1 / span 2; }
+  .d-sharp { grid-column: 5 / span 2; grid-row: 1; }
+  .e { grid-column: 6 / span 2; grid-row: 1 / span 2; }
+  .f { grid-column: 8 / span 2; grid-row: 1 / span 2; }
+  .f-sharp { grid-column: 9 / span 2; grid-row: 1; }
+  .g { grid-column: 10 / span 2; grid-row: 1 / span 2; }
+  .g-sharp { grid-column: 12 / span 2; grid-row: 1; }
+  .a { grid-column: 13 / span 2; grid-row: 1 / span 2; }
+  .a-sharp { grid-column: 15 / span 2; grid-row: 1; }
+  .b { grid-column: 16 / span 2; grid-row: 1 / span 2; }
 }
