@@ -10,13 +10,13 @@ export default class Piano extends React.Component {
     super();
 
     this.synth = new Synth();
-    this.setMidi();
-
     this.state = { notes: {} };
   }
 
-  async setMidi() {
-    this._midi = await MidiDevice.find('C4A71CFFB1F57240A0A43F7510E09EBC96BD26E9E28D28329014C1226BBD9E32');
+  async setMidi(id) {
+    if (this._midi) this._midi.disconnect();
+
+    this._midi = await MidiDevice.find(id);
     this._midi.connect();
     this._midi.onNote((event) => {
       event.type === 'noteOn' ? this.synth.play(event.note) : this.synth.stop();
@@ -37,8 +37,8 @@ export default class Piano extends React.Component {
   render() {
     return (
       <div className="piano">
-        <Controls />
-        <OctavesContainer notes={this.state.notes}/>
+        <Controls setMidi={(id) => this.setMidi(id)} />
+        <OctavesContainer notes={this.state.notes} />
       </div>
     );
   }
