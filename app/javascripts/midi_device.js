@@ -1,22 +1,17 @@
-const NOTES = ['c', 'c-sharp', 'd', 'd-sharp', 'e', 'f', 'f-sharp', 'g', 'g-sharp', 'a', 'a-sharp', 'b'];
-
-const TYPES = {
-  8: 'noteOff',
-  9: 'noteOn'
-};
+import MidiEvent from 'midi_event';
 
 export default class MidiDevise {
   static async devices() {
-    return (await this.inputs()).map((input) => new MidiDevise(input));
+    return (await this._inputs()).map((input) => new MidiDevise(input));
   }
 
   static async find(id) {
-    const input = (await this.inputs()).find((input) => input.id == id);
+    const input = (await this._inputs()).find((input) => input.id == id);
 
     return new MidiDevise(input);
   }
 
-  static async inputs() {
+  static async _inputs() {
     const inputs = [];
 
     const access = await navigator.requestMIDIAccess();
@@ -33,39 +28,24 @@ export default class MidiDevise {
   }
 
   connect() {
-    this._midi.onmidimessage = (e) => this.processEvent(e);
+    this._midi.onmidimessage = (e) => this._processEvent(e);
   }
 
-  processEvent(e) {
-    const data = e.data;
-    const type = this.type(data);
-
-    switch (type) {
-    case 'noteOn':
-    case 'noteOff':
-      this.noteCallback(type, this.note(data[1]), this.octave(data[1]));
-    }
+  disconnect() {
+    this._midi.onmidimessage = null;
   }
 
   onNote(callback) {
     this.noteCallback = callback;
   }
 
-  type(data) {
-    const type = TYPES[data[0] >> 4];
+  _processEvent(e) {
+    const event = new MidiEvent(e);
 
-    if (type === 'noteOn' && data[2] === 0) {
-      return 'noteOff';
+    switch (event.type) {
+    case 'noteOn':
+    case 'noteOff':
+      this.noteCallback(event);
     }
-
-    return type;
-  }
-
-  note(num) {
-    return NOTES[num % 12];
-  }
-
-  octave(num) {
-    return Math.floor(num / 12);
   }
 }
