@@ -24,7 +24,6 @@ export default class MidiDevise {
     this.id = midi.id;
     this.name = midi.name;
     this._midi = midi;
-    this.connect();
   }
 
   connect() {

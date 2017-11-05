@@ -19,18 +19,18 @@ module.exports = {
       path.join(__dirname, '..', 'app/javascripts'),
       'node_modules',
     ],
-    extensions: ['.js', '.scss', '.css'],
+    extensions: ['.js', '.jsx', '.scss', '.css'],
   },
 
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
+            presets: ['env', 'react'],
             plugins: [
               'transform-class-properties',
               'syntax-async-functions',
