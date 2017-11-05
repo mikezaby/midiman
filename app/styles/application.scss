@@ -158,7 +158,7 @@ $semitone-width-column: $tone-width * 1/3;
 
     &.active {
       box-shadow: inset 0 0 20px rgba(#fff, .6);
-      transform: translatex(75%) scaleY(.99);
+      transform: scaleY(.99);
       -webkit-transform-origin-y: 0;
     }
   }
