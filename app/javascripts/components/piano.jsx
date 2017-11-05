@@ -16,6 +16,8 @@ export default class Piano extends React.Component {
   async setMidi(id) {
     if (this._midi) this._midi.disconnect();
 
+    if (id.length === 0) return;
+
     this._midi = await MidiDevice.find(id);
     this._midi.connect();
     this._midi.onNote((event) => {
