@@ -10,7 +10,12 @@ export default class Piano extends React.Component {
     super();
 
     this.synth = new Synth();
-    this.state = { notes: {}, octaves: 8 };
+
+    const midiId = localStorage.getItem('midiDevice') || '';
+    const octaves = parseInt(localStorage.getItem('octaves')) || 6;
+
+    this.state = { notes: {}, octaves: octaves, midiId: midiId };
+    this.setMidi(midiId);
   }
 
   async setMidi(id) {
@@ -20,6 +25,8 @@ export default class Piano extends React.Component {
 
     this._midi = await MidiDevice.find(id);
     this._midi.connect();
+    localStorage.setItem('midiDevice', id);
+
     this._midi.onNote((event) => {
       event.type === 'noteOn' ? this.synth.play(event.note) : this.synth.stop();
 
@@ -38,12 +45,14 @@ export default class Piano extends React.Component {
 
   setOctaves(num) {
     this.setState({ octaves: num });
+    localStorage.setItem('octaves', num);
   }
 
   render() {
     return (
       <div className="piano">
         <Controls
+          midiId={this.state.midiId}
           setMidi={(id) => this.setMidi(id)}
           setOctaves={(num) => this.setOctaves(num)}
           octaves={this.state.octaves}

@@ -27,7 +27,7 @@ export default class Controller extends React.Component {
 
   render() {
     return (
-      <select className="drop-control" onChange={(e) => this.onChange(e)}>
+      <select className="drop-control" onChange={(e) => this.onChange(e)} value={this.props.midiId}>
         {this.devices()}
       </select>
     );

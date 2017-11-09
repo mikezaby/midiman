@@ -11,7 +11,7 @@ export default class Controls extends React.Component {
         <div className="round-control round-control-2"></div>
         <div className="round-control round-control-3"></div>
 
-        <Controller setMidi={this.props.setMidi}/>
+        <Controller setMidi={this.props.setMidi} midiId={this.props.midiId} />
         <OctavesControl octaves={this.props.octaves} setOctaves={this.props.setOctaves}/>
 
         <div className="midiman-logo-bg"></div>
