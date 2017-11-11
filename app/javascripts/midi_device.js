@@ -20,9 +20,22 @@ export default class MidiDevise {
     return inputs;
   }
 
+  static async onStateChange(callback) {
+    const access = await navigator.requestMIDIAccess();
+
+    access.onstatechange = (e) => {
+      if (e.port.type !== 'input') return;
+
+      const midi = new MidiDevise(e.port);
+
+      callback(midi);
+    };
+  }
+
   constructor(midi) {
     this.id = midi.id;
     this.name = midi.name;
+    this.state = midi.state;
     this._midi = midi;
   }
 

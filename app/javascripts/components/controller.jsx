@@ -8,10 +8,28 @@ export default class Controller extends React.Component {
 
     this.state = { devices: [] };
     this.fetchDevises();
+    this.listenMidiChanges();
   }
 
   onChange(e) {
     this.props.setMidi(e.currentTarget.value);
+  }
+
+  listenMidiChanges() {
+    MidiDevice.onStateChange((midi) => {
+      const devices = this.state.devices;
+
+      if (midi.state === 'disconnected') {
+        const index = devices.findIndex((dev) => dev.id === midi.id);
+        if (index < 0) return;
+
+        devices.splice(index, 1);
+      } else {
+        devices.push(midi);
+      }
+
+      this.setState({ devices: devices });
+    });
   }
 
   fetchDevises() {

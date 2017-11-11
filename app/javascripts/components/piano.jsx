@@ -15,11 +15,13 @@ export default class Piano extends React.Component {
     const octaves = parseInt(localStorage.getItem('octaves')) || 6;
 
     this.state = { notes: {}, octaves: octaves, midiId: midiId };
-    this.setMidi(midiId);
+    this.setMidi(midiId, true);
   }
 
-  async setMidi(id) {
+  async setMidi(id, initial = false) {
     if (this._midi) this._midi.disconnect();
+
+    if (!initial) this.setState({ midiId: id });
 
     if (id.length === 0) return;
 
