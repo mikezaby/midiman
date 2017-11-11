@@ -48,9 +48,22 @@ export default class Piano extends React.Component {
     localStorage.setItem('octaves', num);
   }
 
+  className() {
+    const classNames = ['piano'];
+    if (this.state.octaves == 1) {
+      classNames.push('x-small');
+    }
+
+    if (this.state.octaves == 2) {
+      classNames.push('small');
+    }
+
+    return classNames.join(' ');
+  }
+
   render() {
     return (
-      <div className="piano">
+      <div className={this.className()}>
         <Controls
           midiId={this.state.midiId}
           setMidi={(id) => this.setMidi(id)}
