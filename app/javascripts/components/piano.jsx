@@ -32,7 +32,7 @@ export default class Piano extends React.Component {
     this._midi.connect();
 
     this._midi.onNote((event) => {
-      event.type === 'noteOn' ? this.synth.play(event.note) : this.synth.stop();
+      event.type === 'noteOn' ? this.synth.play(event.note) : this.synth.stop(event.note);
 
       if (event.isNote) {
         this.setNote(event.note, event.type === 'noteOn');
