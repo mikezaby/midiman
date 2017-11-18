@@ -18,16 +18,18 @@ export default class Piano extends React.Component {
     this.setMidi(midiId, true);
   }
 
-  async setMidi(id, initial = false) {
+  setMidi = async (id, initial = false) => {
     if (this._midi) this._midi.disconnect();
 
-    if (!initial) this.setState({ midiId: id });
+    if (!initial) {
+      this.setState({ midiId: id });
+      localStorage.setItem('midiDevice', id);
+    }
 
     if (id.length === 0) return;
 
     this._midi = await MidiDevice.find(id);
     this._midi.connect();
-    localStorage.setItem('midiDevice', id);
 
     this._midi.onNote((event) => {
       event.type === 'noteOn' ? this.synth.play(event.note) : this.synth.stop();
@@ -45,7 +47,7 @@ export default class Piano extends React.Component {
     this.setState({ notes: this.state.notes });
   }
 
-  setOctaves(num) {
+  setOctaves = (num) => {
     this.setState({ octaves: num });
     localStorage.setItem('octaves', num);
   }
@@ -68,8 +70,8 @@ export default class Piano extends React.Component {
       <div className={this.className()}>
         <Controls
           midiId={this.state.midiId}
-          setMidi={(id) => this.setMidi(id)}
-          setOctaves={(num) => this.setOctaves(num)}
+          setMidi={this.setMidi}
+          setOctaves={this.setOctaves}
           octaves={this.state.octaves}
         />
         <OctavesContainer notes={this.state.notes} octaves={this.state.octaves}

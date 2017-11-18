@@ -5,7 +5,7 @@ export default class OctavesControl extends React.Component {
     super(props);
   }
 
-  onChange(e) {
+  onChange = (e) => {
     this.props.setOctaves(e.currentTarget.value);
   }
 
@@ -16,7 +16,7 @@ export default class OctavesControl extends React.Component {
 
   render() {
     return (
-      <select className="drop-control" onChange={(e) => this.onChange(e)} value={this.props.octaves}>
+      <select className="drop-control" onChange={this.onChange} value={this.props.octaves}>
         {this.octaves()}
       </select>
     );

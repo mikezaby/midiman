@@ -11,7 +11,7 @@ export default class Controller extends React.Component {
     this.listenMidiChanges();
   }
 
-  onChange(e) {
+  onChange = (e) => {
     this.props.setMidi(e.currentTarget.value);
   }
 
@@ -45,7 +45,7 @@ export default class Controller extends React.Component {
 
   render() {
     return (
-      <select className="drop-control" onChange={(e) => this.onChange(e)} value={this.props.midiId}>
+      <select className="drop-control" onChange={this.onChange} value={this.props.midiId}>
         {this.devices()}
       </select>
     );
