@@ -1,7 +1,7 @@
 {
   "name": "midiman",
   "version": "1.0.0",
-  "author": "Michalis Zamparas <mikezaby@skroutz.gr>",
+  "author": "Michalis Zamparas <mikezaby@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.26.0",
