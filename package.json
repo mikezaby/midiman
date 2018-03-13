@@ -32,7 +32,7 @@
     "webpack-dev-server": "^3.1.0"
   },
   "scripts": {
-    "server": "webpack-dev-server  --config config/webpack.config.js",
-    "build": "NODE_ENV=\"production\" webpack --config config/webpack.config.js --bail"
+    "server": "webpack-dev-server --config config/webpack.config.js",
+    "build": "webpack --config config/webpack.config.js --bail"
   }
 }
