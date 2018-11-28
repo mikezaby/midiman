@@ -72,6 +72,7 @@ export default class Piano extends React.Component {
           midiId={this.state.midiId}
           setMidi={this.setMidi}
           setOctaves={this.setOctaves}
+          setOscillator={this.synth.setOscillator}
           octaves={this.state.octaves}
         />
         <OctavesContainer notes={this.state.notes} octaves={this.state.octaves}
