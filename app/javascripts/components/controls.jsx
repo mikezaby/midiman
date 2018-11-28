@@ -2,6 +2,7 @@ import React from 'react';
 
 import Controller from 'components/controller';
 import OctavesControl from 'components/octaves_control';
+import Oscillator from 'components/Oscillator';
 
 export default class Controls extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export default class Controls extends React.Component {
         <div className="round-control round-control-2"></div>
         <div className="round-control round-control-3"></div>
 
+        <Oscillator setOscillator={this.props.setOscillator} />
         <Controller setMidi={this.props.setMidi} midiId={this.props.midiId} />
         <OctavesControl octaves={this.props.octaves} setOctaves={this.props.setOctaves}/>
 
