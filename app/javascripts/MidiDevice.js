@@ -1,4 +1,4 @@
-import MidiEvent from 'midi_event';
+import MidiEvent from 'MidiEvent';
 
 export default class MidiDevise {
   static async devices() {

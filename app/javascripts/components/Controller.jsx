@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MidiDevice from 'midi_device';
+import MidiDevice from 'MidiDevice';
 
 export default class Controller extends React.Component {
   constructor(props = {}) {

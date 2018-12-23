@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Controller from 'components/controller';
-import OctavesControl from 'components/octaves_control';
+import Controller from 'components/Controller';
+import OctavesControl from 'components/OctavesControl';
 import Oscillator from 'components/Oscillator';
 
 export default class Controls extends React.Component {

@@ -1,4 +1,4 @@
-import Note from 'note';
+import Note from 'Note';
 
 export default class MidiEvent {
   static TYPES = {

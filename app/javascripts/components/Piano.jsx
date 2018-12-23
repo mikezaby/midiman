@@ -1,9 +1,9 @@
 import React from 'react';
-import Synth from 'synth';
-import MidiDevice from 'midi_device';
+import Synth from 'Synth';
+import MidiDevice from 'MidiDevice';
 
-import OctavesContainer from 'components/octaves_container';
-import Controls from 'components/controls';
+import OctavesContainer from 'components/OctavesContainer';
+import Controls from 'components/Controls';
 
 export default class Piano extends React.Component {
   constructor() {

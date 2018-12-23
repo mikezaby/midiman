@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Octave from 'components/octave';
+import Octave from 'components/Octave';
 
 export default class OctavesContainer extends React.Component {
   octaves() {

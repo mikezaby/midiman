@@ -1,12 +1,12 @@
 import 'babel-polyfill';
 
-import MidiDevice from 'midi_device';
+import MidiDevice from 'MidiDevice';
 
 import 'styles/application.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Piano from 'components/piano';
+import Piano from 'components/Piano';
 
 window.MidiDevice = MidiDevice;
 
