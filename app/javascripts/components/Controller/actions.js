@@ -14,7 +14,7 @@ export const initializeDevices = () => (dispatch, getState) => {
 
   MidiDeviceManager.onStateChange((midi) => {
     const type = midi.state === 'disconnected' ? REMOVE_DEVICE : ADD_DEVICE;
-    const { deviceID, devices } = getState().controller;
+    const { deviceID } = getState().controller;
 
     if (type === REMOVE_DEVICE && midi.id === deviceID) {
       dispatch(selectDevice(null));
