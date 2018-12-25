@@ -11,15 +11,19 @@ export default (state = initialState, action) => {
         ...state,
         devices: [...action.devices]
       };
-    case types.ADD_DEVICE:
-    case types.REMOVE_DEVICE: {
-      const { type, device } = action;
+    case types.ADD_DEVICE: {
+      const { device } = action;
 
-      const newDevices = type === types.ADD_DEVICE
-        ? [...state.devices, device]
-        : state.devices.filter((dev) => dev.id !== device.id);
+      const newDevices = state.devices.findIndex((dev) => dev.id === device.id) > -1
+        ? state.devices
+        : [...state.devices, device];
 
       return { ...state, devices: newDevices };
+    }
+    case types.REMOVE_DEVICE: {
+      const { device } = action;
+
+      return { ...state, devices: state.devices.filter((dev) => dev.id !== device.id) };
     }
     case types.SELECT_DEVICE: {
       const { deviceID } = action;

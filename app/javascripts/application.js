@@ -1,7 +1,5 @@
 import 'babel-polyfill';
 
-import MidiDevice from 'MidiDevice';
-
 import 'styles/application.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -19,8 +17,6 @@ const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(thunk))
 );
-
-window.MidiDevice = MidiDevice;
 
 ReactDOM.render(
   <Provider store={store}>

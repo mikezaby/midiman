@@ -1,8 +1,8 @@
-import MidiDevice from 'MidiDevice';
+import MidiDeviceManager from 'MidiDeviceManager';
 import { INITIALIZE_DEVICES, ADD_DEVICE, REMOVE_DEVICE, SELECT_DEVICE } from './constants';
 
 export const initializeDevices = () => (dispatch, getState) => {
-  MidiDevice.devices().then((devices) => {
+  MidiDeviceManager.fetchDevices().then((devices) => {
     dispatch({
       type: INITIALIZE_DEVICES,
       devices: devices
@@ -12,10 +12,9 @@ export const initializeDevices = () => (dispatch, getState) => {
   });
 
 
-  MidiDevice.onStateChange((midi) => {
+  MidiDeviceManager.onStateChange((midi) => {
     const type = midi.state === 'disconnected' ? REMOVE_DEVICE : ADD_DEVICE;
     const { deviceID, devices } = getState().controller;
-    if (type === ADD_DEVICE && findDevice(deviceID, devices)) return;
 
     if (type === REMOVE_DEVICE && midi.id === deviceID) {
       dispatch(selectDevice(null));
