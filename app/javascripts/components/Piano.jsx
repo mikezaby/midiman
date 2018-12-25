@@ -1,37 +1,36 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import Synth from 'Synth';
-import MidiDevice from 'MidiDevice';
 
 import OctavesContainer from 'components/OctavesContainer';
 import Controls from 'components/Controls';
+import { connectedDevice } from 'components/Controller/actions';
 
-export default class Piano extends React.Component {
-  constructor() {
-    super();
+class Piano extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.synth = new Synth();
 
-    const midiId = localStorage.getItem('midiDevice') || '';
     const octaves = parseInt(localStorage.getItem('octaves')) || 6;
 
-    this.state = { notes: {}, octaves: octaves, midiId: midiId };
-    this.setMidi(midiId, true);
+    this.state = { notes: {}, octaves: octaves };
+    this.sendNotes();
   }
 
-  setMidi = async (id, initial = false) => {
-    if (this._midi) this._midi.disconnect();
-
-    if (!initial) {
-      this.setState({ midiId: id });
-      localStorage.setItem('midiDevice', id);
+  componentDidUpdate(nextProps) {
+    if (this.props.deviceID !== nextProps.deviceID) {
+      this.sendNotes();
     }
+  }
 
-    if (id.length === 0) return;
+  sendNotes = () => {
+    const device = this.props.connectedDevice();
+    if (!device) return;
 
-    this._midi = await MidiDevice.find(id);
-    this._midi.connect();
-
-    this._midi.onNote((event) => {
+    device.onNote((event) => {
       event.type === 'noteOn' ? this.synth.play(event.note) : this.synth.stop(event.note);
 
       if (event.isNote) {
@@ -69,8 +68,6 @@ export default class Piano extends React.Component {
     return (
       <div className={this.className()}>
         <Controls
-          midiId={this.state.midiId}
-          setMidi={this.setMidi}
           setOctaves={this.setOctaves}
           setOscillator={this.synth.setOscillator}
           octaves={this.state.octaves}
@@ -81,3 +78,13 @@ export default class Piano extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  connectedDevice: bindActionCreators(connectedDevice, dispatch)
+});
+
+const mapStateToProps = (state) => ({
+  deviceID: state.controller.deviceID
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Piano);
