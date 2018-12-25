@@ -31,7 +31,6 @@ class MidiDeviceManager {
 
       const input = e.port;
 
-      console.log(input)
       const midi = new MidiDevice(input);
 
       callback(midi);
