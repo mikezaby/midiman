@@ -55,9 +55,9 @@ export default class MidiDevise {
     const event = new MidiEvent(e);
 
     switch (event.type) {
-    case 'noteOn':
-    case 'noteOff':
-      this.noteCallback(event);
+      case 'noteOn':
+      case 'noteOff':
+        this.noteCallback(event);
     }
   }
 }
